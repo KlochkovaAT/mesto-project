@@ -20,3 +20,7 @@
 1. БЭМ
 1. Адаптивная верстка
 1. Формы
+
+**Ссылка на проект в GitHub pages**
+
+https://klochkovaat.github.io/mesto-project/index.html
