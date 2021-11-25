@@ -1,0 +1,20 @@
+.profile-form__submit {
+ margin-top: 48px;
+ width: 100%;
+ height: 50px;
+ background-color: black;
+ border-radius: 2px;
+ color: white;
+}
+
+.profile-form__submit:hover {
+  opacity: 0.8;
+  cursor: pointer;
+ }
+
+@media screen and (max-width: 685px) {
+  .profile-form__submit {
+    margin-top: 45px;
+    height: 46px;
+  }
+}

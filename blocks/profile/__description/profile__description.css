@@ -1,0 +1,16 @@
+.profile__description {
+  margin: 0;
+  font-size: 18px;
+  line-height: 22px;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+@media screen and (max-width: 685px) {
+  .profile__description {
+    margin: 0 auto 36px;
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 400;
+  }
+}

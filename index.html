@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./pages/index.css" />
+    <title>Место</title>
+  </head>
+  <body>
+    <div class="page">
+      <header class="header page__header">
+        <img class="header__logo" src="./images/logo.svg" alt="Логотип" />
+      </header>
+      <main class="content page__content">
+        <section class="profile">
+          <img class="profile__avatar" src="./images/avatar__image.png" alt="Аватар"/>
+          <div class="profile__info">
+            <h1 class="profile__title">Жак-Ив Кусто</h1>
+            <button class="profile__edit-button button"></button>
+            <p class="profile__description">Исследователь океана</p>
+          </div>
+          <button class="profile__add-button button"></button>
+        </section>
+
+        <section class="elements">
+          <ul class="elements__list">
+            <li class="element">
+              <img src="./images/element-chelabinsk.jpg" alt="Челябинск" class="element__picture" />
+              <h2 class="element__title">Челябинск</h2>
+              <button class="element__heart"></button>
+            </li>
+            <li class="element">
+              <img src="./images/element-ekaterinburg.jpg" alt="Екатеринбург" class="element__picture" />
+              <h2 class="element__title">Екатеринбург</h2>
+              <button class="element__heart"></button>
+            </li>
+            <li class="element">
+              <img src="./images/element-karelia.jpg" alt="Карелия" class="element__picture" />
+              <h2 class="element__title">Карелия</h2>
+              <button class="element__heart"></button>
+            </li>
+            <li class="element">
+              <img src="./images/element-ruskenskie.jpg" alt="Русскинские" class="element__picture" />
+              <h2 class="element__title">Русскинские</h2>
+              <button class="element__heart"></button>
+            </li>
+            <li class="element">
+              <img src="./images/element-satka.jpg" alt="Сатка" class="element__picture" />
+              <h2 class="element__title">Сатка</h2>
+              <button class="element__heart element__heart_active"></button>
+            </li>
+            <li class="element">
+              <img src="./images/element-spb.jpg" alt="Санкт-Петербург" class="element__picture" />
+              <h2 class="element__title">Санкт-Петербург</h2>
+              <button class="element__heart"></button>
+            </li>
+          </ul>
+        </section>
+      </main>
+      <footer class="footer page__footer">
+        <p class="footer__copyright">&copy; 2021. MESTO Russia</p>
+      </footer>
+    </div>
+    <div class="popup popup_opened">
+      <div class="popup__container">
+        <button class="popup__close button"></button>
+        <form class="profile-form">
+          <h2 class="profile-form__title">Редактировать профиль</h2>
+          <fieldset class="profile-form__input-container">
+            <input type="text" class="profile-form__input" name="name" placeholder="Имя" value="Жак-Ив Кусто">
+            <input
+              type="text"
+              class="profile-form__input"
+              name="description"
+              placeholder="Описание"
+              value="Исследователь океана"
+            >
+          </fieldset>
+          <input type="submit" class="profile-form__submit" value="Сохранить">
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
