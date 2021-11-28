@@ -1,4 +1,4 @@
-.popup__close {
+.form__close {
   background-image: url(../../../images/close-icon.svg);
   background-size: cover;
   width: 32px;
@@ -13,7 +13,7 @@
 }
 
 @media screen and (max-width: 685px) {
-  .popup__close {
+  .form__close {
     background-image: url(../../../images/close-icon-s.svg);
     width: 20px;
     height: 20px;
