@@ -1,11 +1,23 @@
 .popup__close {
-  background-image: url(../../../images/close-Icon.png);
+  background-image: url(../../../images/close-icon.svg);
   background-size: cover;
   width: 32px;
   height: 32px;
   background-color: transparent;
   padding: 0;
   border: 0;
-  grid-column-start: 2;
   margin-left: auto;
+  position: absolute;
+  top: calc(-8px - 32px);
+  right: calc(-8px - 32px);
+}
+
+@media screen and (max-width: 685px) {
+  .popup__close {
+    background-image: url(../../../images/close-icon-s.svg);
+    width: 20px;
+    height: 20px;
+    top: calc(-16px - 20px);
+    right: 0;
+  }
 }

@@ -4,6 +4,10 @@
   line-height: 22px;
   grid-column-start: 1;
   grid-column-end: 3;
+  text-overflow: ellipsis;
+  max-width: 340px;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 @media screen and (max-width: 685px) {
@@ -11,6 +15,6 @@
     margin: 0 auto 36px;
     font-size: 14px;
     line-height: 17px;
-    font-weight: 400;
+    max-width: 282px;
   }
 }

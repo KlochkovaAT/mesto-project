@@ -3,6 +3,10 @@
   font-size: 42px;
   line-height: 48px;
   font-weight: 500;
+  text-overflow: ellipsis;
+  max-width: 295px;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 @media screen and (max-width: 685px) {
@@ -10,5 +14,6 @@
     margin-top: 22.5px;
     font-size: 27px;
     line-height: 33px;
+    max-width: 262px;
   }
 }

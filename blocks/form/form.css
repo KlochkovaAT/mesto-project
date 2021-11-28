@@ -1,4 +1,4 @@
-.profile-form {
+.form {
   background-color: white;
   max-width: 430px;
   min-height: 330px;
@@ -10,8 +10,7 @@
 
 
 @media screen and (max-width: 685px) {
-  .profile-form {
+  .form {
     padding: 25px 22px;
-    grid-column-end: 3;
   }
 }
