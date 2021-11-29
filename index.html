@@ -73,15 +73,17 @@
       <p class="footer__copyright">&copy; 2021. MESTO Russia</p>
     </footer>
     <div class="popup popup_opened">
-      <form class="form popup__container" name="profile-form">
-        <button class="form__close button" type="button"></button>
-        <h2 class="form__title">Редактировать профиль</h2>
-        <fieldset class="form__input-container">
-          <input type="text" class="form__input" name="name" placeholder="Имя" value="Жак-Ив Кусто" />
-          <input type="text" class="form__input" name="description" placeholder="Описание" value="Исследователь океана" />
-        </fieldset>
-        <input type="submit" class="form__submit" value="Сохранить" />
-      </form>
+      <div class="popup__container">
+        <button class="popup__close button" type="button"></button>
+        <form class="form" name="profile-form">
+          <h2 class="form__title">Редактировать профиль</h2>
+          <fieldset class="form__input-container">
+            <input type="text" class="form__input" name="name" placeholder="Имя" value="Жак-Ив Кусто" />
+            <input type="text" class="form__input" name="description" placeholder="Описание" value="Исследователь океана" />
+          </fieldset>
+          <input type="submit" class="form__submit" value="Сохранить" />
+        </form>
+      </div>
     </div>
   </body>
 </html>
