@@ -24,55 +24,13 @@
 
       <section class="elements">
         <ul class="elements__list">
-          <li class="element">
-            <img src="./images/element-chelabinsk.jpg" alt="Челябинск" class="element__picture" />
-            <div class="element__description">
-              <h2 class="element__title">Челябинск</h2>
-              <button class="element__heart" type="button"></button>
-            </div>
-          </li>
-          <li class="element">
-            <img src="./images/element-ekaterinburg.jpg" alt="Екатеринбург" class="element__picture" />
-            <div class="element__description">
-              <h2 class="element__title">Екатеринбург</h2>
-              <button class="element__heart" type="button"></button>
-            </div>
-          </li>
-          <li class="element">
-            <img src="./images/element-karelia.jpg" alt="Карелия" class="element__picture" />
-            <div class="element__description">
-              <h2 class="element__title">Карелия</h2>
-              <button class="element__heart" type="button"></button>
-            </div>
-          </li>
-          <li class="element">
-            <img src="./images/element-ruskenskie.jpg" alt="Русскинские" class="element__picture" />
-            <div class="element__description">
-              <h2 class="element__title">Русскинские</h2>
-              <button class="element__heart" type="button"></button>
-            </div>
-          </li>
-          <li class="element">
-            <img src="./images/element-satka.jpg" alt="Сатка" class="element__picture" />
-            <div class="element__description">
-              <h2 class="element__title">Сатка</h2>
-              <button class="element__heart element__heart_active" type="button"></button>
-            </div>
-          </li>
-          <li class="element">
-            <img src="./images/element-spb.jpg" alt="Санкт-Петербург" class="element__picture" />
-            <div class="element__description">
-              <h2 class="element__title">Санкт-Петербург</h2>
-              <button class="element__heart" type="button"></button>
-            </div>
-          </li>
         </ul>
       </section>
     </main>
     <footer class="footer page__footer">
       <p class="footer__copyright">&copy; 2021. MESTO Russia</p>
     </footer>
-    <div class="popup popup_opened">
+    <div class="popup">
       <div class="popup__container">
         <button class="popup__close button" type="button"></button>
         <form class="form" name="profile-form">
@@ -85,5 +43,39 @@
         </form>
       </div>
     </div>
+
+    <div class="popup">
+      <div class="popup__container">
+        <button class="popup__close button" type="button"></button>
+        <form class="form" name="add-form">
+          <h2 class="form__title">Новое место</h2>
+          <fieldset class="form__input-container">
+            <input type="text" class="form__input" name="element-title" placeholder="Название" />
+            <input type="text" class="form__input" name="link" placeholder="Ссылка на картинку" />
+          </fieldset>
+          <input type="submit" class="form__submit" value="Создать" />
+        </form>
+      </div>
+    </div>
+
+    <div class="popup">
+      <div class="popup__image-container">
+        <button class="popup__close button" type="button"></button>
+        <img class="popup__image" src="#" alt="">
+        <h2 class="popup__title"></h2>
+      </div>
+    </div>
+
+    <template id="templateElement">
+      <li class="element">
+        <button class="element__trash button" type="button"></button>
+        <img class="element__picture" />
+        <div class="element__description">
+          <h2 class="element__title"></h2>
+          <button class="element__heart" type="button"></button>
+        </div>
+      </li>
+    </template>
+    <script src="script.js"></script>
   </body>
 </html>
