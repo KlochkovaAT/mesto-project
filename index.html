@@ -30,10 +30,11 @@
     <footer class="footer page__footer">
       <p class="footer__copyright">&copy; 2021. MESTO Russia</p>
     </footer>
-    <div class="popup">
+
+    <div class="popup" id="popupProfile">
       <div class="popup__container">
         <button class="popup__close button" type="button"></button>
-        <form class="form" name="profile-form">
+        <form class="form">
           <h2 class="form__title">Редактировать профиль</h2>
           <fieldset class="form__input-container">
             <input type="text" class="form__input" name="name" placeholder="Имя" value="Жак-Ив Кусто" />
@@ -44,10 +45,10 @@
       </div>
     </div>
 
-    <div class="popup">
+    <div class="popup" id="popupAddCard">
       <div class="popup__container">
         <button class="popup__close button" type="button"></button>
-        <form class="form" name="add-form">
+        <form class="form">
           <h2 class="form__title">Новое место</h2>
           <fieldset class="form__input-container">
             <input type="text" class="form__input" name="element-title" placeholder="Название" />
@@ -58,7 +59,7 @@
       </div>
     </div>
 
-    <div class="popup">
+    <div class="popup" id="popupImage">
       <div class="popup__image-container">
         <button class="popup__close button" type="button"></button>
         <img class="popup__image" src="#" alt="">

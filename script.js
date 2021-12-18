@@ -1,42 +1,53 @@
-function showProfileForm() {
-  const title = document.querySelector('.profile__title').textContent;
-  const description = document.querySelector('.profile__description').textContent;
-  const inputContainer = document.querySelector('.form__input-container');
-  const nameField = inputContainer.querySelector('[name="name"]');
-  const descriptionField = inputContainer.querySelector('[name="description"]');
-  const formElement = document.querySelector('.form[name="profile-form"]');
-  const popup = formElement.closest('.popup');
-  nameField.value = title;
-  descriptionField.value = description;
+const popupProfile = document.querySelector('#popupProfile');
+const profileTitle = document.querySelector('.profile__title')
+const profileDescription = document.querySelector('.profile__description')
+const profileFormInputContainer = popupProfile.querySelector('.form__input-container');
+const profileFormNameField = profileFormInputContainer.querySelector('[name="name"]');
+const profileFormDescriptionField = profileFormInputContainer.querySelector('[name="description"]');
+
+
+const popupAddCard = document.querySelector('#popupAddCard');
+const cardTitle = popupAddCard.querySelector('.form__input[name="element-title"]');
+const cardLink = popupAddCard.querySelector('.form__input[name="link"]');
+const elementsList = document.querySelector('.elements__list');
+
+const popupImage = document.querySelector('#popupImage');
+const imageContainer = popupImage.querySelector('.popup__image-container');
+const image = imageContainer.querySelector('.popup__image');
+const imageTitle = imageContainer.querySelector('.popup__title');
+
+function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
 
-function closePopUp() {
+function showProfileForm() {
+  profileFormNameField.value = profileTitle.textContent;
+  profileFormDescriptionField.value = profileDescription.textContent;
+  openPopup(popupProfile);
+}
+
+const editProfile = document.querySelector('.profile__edit-button');
+editProfile.addEventListener('click', showProfileForm);
+
+function closePopup() {
   const popup = document.querySelector('.popup_opened');
   popup.classList.remove('popup_opened');
 }
 
-const editProfile = document.querySelector('.profile__edit-button');
 const closeButtons = document.querySelectorAll('.popup__close');
-editProfile.addEventListener('click', showProfileForm);
 for (let i = 0; i < closeButtons.length; i++) {
-  closeButtons[i].addEventListener('click', closePopUp);
+  closeButtons[i].addEventListener('click', closePopup);
 }
 
-function formSubmitHandler(evt) {
+function profileFormSubmitHandler(evt) {
   evt.preventDefault();
-  const inputContainer = document.querySelector('.form__input-container');
-  const title = inputContainer.querySelector('[name="name"]').value;
-  const description = inputContainer.querySelector('[name="description"]').value;
-  const profileTitle = document.querySelector('.profile__title');
-  const profileDescription = document.querySelector('.profile__description');
-  profileTitle.textContent = title;
-  profileDescription.textContent = description;
-  closePopUp();
+  profileTitle.textContent = profileFormNameField.value;
+  profileDescription.textContent = profileFormDescriptionField.value;
+  closePopup();
 }
 
-const formElement = document.querySelector('.form[name="profile-form"]');
-formElement.addEventListener('submit', formSubmitHandler);
+const profileFormElement = popupProfile.querySelector('.form');
+profileFormElement.addEventListener('submit', profileFormSubmitHandler);
 
 const initialCards = [
   {
@@ -65,19 +76,18 @@ const initialCards = [
   },
 ];
 
+const templateElement = document.querySelector('#templateElement').content;
+
 function createCardElement(name, link) {
-  const templateElement = document.querySelector('#templateElement').content;
   const cardElement = templateElement.querySelector('.element').cloneNode(true);
-  elementPicture = cardElement.querySelector('.element__picture');
+  const elementPicture = cardElement.querySelector('.element__picture');
   elementPicture.src = link;
   elementPicture.alt = name;
   elementPicture.addEventListener('click', function () {
-    const imageContainer = document.querySelector('.popup__image-container');
-    imageContainer.closest('.popup').classList.add('popup_opened');
-    const image = imageContainer.querySelector('.popup__image');
     image.src = link;
     image.alt = name;
-    imageContainer.querySelector('.popup__title').textContent = name;
+    imageTitle.textContent = name;
+    openPopup(popupImage);
   });
   cardElement.querySelector('.element__title').textContent = name;
   cardElement.querySelector('.element__heart').addEventListener('click', function (evt) {
@@ -91,37 +101,30 @@ function createCardElement(name, link) {
 }
 
 function appendCard(card) {
-  const elementsList = document.querySelector('.elements__list');
+
   const cardElement = createCardElement(card.name, card.link);
   elementsList.append(cardElement);
 }
 
-for (let i = 0; i < initialCards.length; i = i + 1) {
-  const card = initialCards[i];
+initialCards.forEach(function (card) {
   appendCard(card);
-}
+});
 
 function showAddForm() {
-  const formElement = document.querySelector('.form[name="add-form"]');
-  formElement.querySelector('.form__input[name="element-title"]').value = '';
-  formElement.querySelector('.form__input[name="link"]').value = '';
-  const popup = formElement.closest('.popup');
-  popup.classList.add('popup_opened');
+  cardTitle.value = '';
+  cardLink.value = '';
+  openPopup(popupAddCard);
 }
 
 const addButton = document.querySelector('.profile__add-button');
 addButton.addEventListener('click', showAddForm);
 
-const formAdd = document.querySelector('.form[name="add-form"]');
+const formAdd = popupAddCard.querySelector('.form');
 formAdd.addEventListener('submit', formAddSubmitHandler);
 
 function formAddSubmitHandler(evt) {
   evt.preventDefault();
-  const formAdd = document.querySelector('.form[name="add-form"]');
-  const name = formAdd.querySelector('.form__input[name="element-title"]').value;
-  const link = formAdd.querySelector('.form__input[name="link"]').value;
-  const elementsList = document.querySelector('.elements__list');
-  const cardElement = createCardElement(name, link);
+  const cardElement = createCardElement(cardTitle.value, cardLink.value);
   elementsList.prepend(cardElement);
-  closePopUp();
+  closePopup();
 }
