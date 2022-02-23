@@ -1,6 +1,6 @@
 import { enableValidation, resetValidation } from './components/validate.js';
 import { createCardElement } from './components/card.js';
-import { openPopup, closePopup} from './components/modal.js';
+import { openPopup, closePopup } from './components/modal.js';
 import './pages/index.css';
 
 const cardElementCss = {
@@ -19,7 +19,7 @@ const validationCssClasses = {
   inactiveButtonClass: 'form__submit_inactive',
   inputErrorClass: 'form__input_type_error',
   errorClass: 'form__input-error_active',
-}
+};
 
 const popupOpenedClass = 'popup_opened';
 
@@ -106,16 +106,13 @@ initialCards.forEach(function (card) {
   elementsList.append(cardElement);
 });
 
-function showAddForm() {
+const addButton = document.querySelector('.profile__add-button');
+addButton.addEventListener('click', function () {
   cardTitle.value = '';
   cardLink.value = '';
   resetValidation(formAdd, validationCssClasses);
   openPopup(popupAddCard, popupOpenedClass);
-}
-
-const addButton = document.querySelector('.profile__add-button');
-addButton.addEventListener('click', showAddForm);
-
+});
 
 formAdd.addEventListener('submit', function (evt) {
   evt.preventDefault();
