@@ -1,0 +1,5 @@
+.form__submit_inactive {
+  background-color: #e5e5e5;
+  pointer-events: none;
+  user-select: none;
+}

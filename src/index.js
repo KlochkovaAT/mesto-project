@@ -1,10 +1,11 @@
-const popupProfile = document.querySelector('#popupProfile');
-const profileTitle = document.querySelector('.profile__title')
-const profileDescription = document.querySelector('.profile__description')
-const profileFormInputContainer = popupProfile.querySelector('.form__input-container');
-const profileFormNameField = profileFormInputContainer.querySelector('[name="name"]');
-const profileFormDescriptionField = profileFormInputContainer.querySelector('[name="description"]');
+import './pages/index.css'
 
+const popupProfile = document.querySelector('#popupProfile');
+const profileTitle = document.querySelector('.profile__title');
+const profileDescription = document.querySelector('.profile__description');
+const profileFormInputContainer = popupProfile.querySelector('.form__input-container');
+const profileFormNameField = profileFormInputContainer.querySelector('[name="name-input"]');
+const profileFormDescriptionField = profileFormInputContainer.querySelector('[name="description"]');
 
 const popupAddCard = document.querySelector('#popupAddCard');
 const cardTitle = popupAddCard.querySelector('.form__input[name="element-title"]');
@@ -101,7 +102,6 @@ function createCardElement(name, link) {
 }
 
 function appendCard(card) {
-
   const cardElement = createCardElement(card.name, card.link);
   elementsList.append(cardElement);
 }
@@ -127,4 +127,18 @@ function formAddSubmitHandler(evt) {
   const cardElement = createCardElement(cardTitle.value, cardLink.value);
   elementsList.prepend(cardElement);
   closePopup();
+}
+
+const popup = document.querySelectorAll('.popup');
+for (let i = 0; i < popup.length; i++) {
+  popup[i].addEventListener('click', function (evt) {
+    if (evt.target.classList.contains('popup')) {
+      closePopup();
+    }
+  });
+  document.addEventListener('keydown', function (evt) {
+    if (evt.key === 'Escape') {
+      closePopup();
+    }
+  });
 }
