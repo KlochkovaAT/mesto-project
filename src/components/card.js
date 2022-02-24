@@ -3,7 +3,9 @@ export function createCardElement(templateElement, name, link, cardElementCss, s
   const elementPicture = cardElement.querySelector(cardElementCss.elementPictureSelector);
   elementPicture.src = link;
   elementPicture.alt = name;
-  elementPicture.addEventListener('click', showCard);
+  elementPicture.addEventListener('click', function () {
+    showCard(name, link);
+  });
   cardElement.querySelector(cardElementCss.elementTitleSelector).textContent = name;
   cardElement.querySelector(cardElementCss.elementHeartSelector).addEventListener('click', function (evt) {
     evt.target.classList.toggle(cardElementCss.elementHeartActiveClass);
