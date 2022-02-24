@@ -13,8 +13,9 @@ export function openPopup(popup, popupOpenedClass) {
 }
 
 export function closePopup(popupOpenedClass) {
-  popupOpenedClassModalModule = popupOpenedClass;
   const popup = document.querySelector('.' + popupOpenedClass);
-  popup.classList.remove(popupOpenedClass);
+  if (popup) {
+    popup.classList.remove(popupOpenedClass);
+  }
   document.removeEventListener('keydown', closeByEscape);
 }
