@@ -8,22 +8,24 @@
   </head>
   <body class="page">
     <header class="header page__header">
-      <img src="<%=require('./images/logo.svg')%>" alt="Логотип">
+      <img src="<%=require('./images/logo.svg')%>" alt="Логотип" />
     </header>
     <main class="content page__content">
       <section class="profile">
-        <img class="profile__avatar" src="<%=require('./images/avatar__image.png')%>" alt="Аватар" />
+        <div class="profile__avatar-container">
+          <img class="profile__avatar" alt="Аватар" />
+          <div class="profile__avatar-edit"></div>
+        </div>
         <div class="profile__info">
-          <h1 class="profile__title">Жак-Ив Кусто</h1>
+          <h1 class="profile__title"></h1>
           <button class="profile__edit-button button" type="button"></button>
-          <p class="profile__description">Исследователь океана</p>
+          <p class="profile__description"></p>
         </div>
         <button class="profile__add-button button" type="button"></button>
       </section>
 
       <section class="elements">
-        <ul class="elements__list">
-        </ul>
+        <ul class="elements__list"></ul>
       </section>
     </main>
     <footer class="footer page__footer">
@@ -36,12 +38,30 @@
         <form class="form" novalidate>
           <h2 class="form__title">Редактировать профиль</h2>
           <fieldset class="form__input-container">
-            <input type="text" class="form__input" name="name-input" placeholder="Имя" value="Жак-Ив Кусто" id="form__input-name" minlength="2" maxlength="40" required/>
+            <input
+              type="text"
+              class="form__input"
+              name="name-input"
+              placeholder="Имя"
+              id="form__input-name"
+              minlength="2"
+              maxlength="40"
+              required
+            />
             <span class="form__input-error form__input-name-error"></span>
-            <input type="text" class="form__input" name="description" placeholder="Описание" value="Исследователь океана" id="form__input-description" minlength="2" maxlength="200" required/>
+            <input
+              type="text"
+              class="form__input"
+              name="description"
+              placeholder="Описание"
+              id="form__input-description"
+              minlength="2"
+              maxlength="200"
+              required
+            />
             <span class="form__input-error form__input-description-error"></span>
           </fieldset>
-          <input type="submit" class="form__submit" value="Сохранить"/>
+          <input type="submit" class="form__submit" value="Сохранить" />
         </form>
       </div>
     </div>
@@ -52,9 +72,18 @@
         <form class="form" novalidate>
           <h2 class="form__title">Новое место</h2>
           <fieldset class="form__input-container">
-            <input type="text" class="form__input" name="element-title" placeholder="Название" id="form__input-element-title" minlength="2" maxlength="30" required/>
+            <input
+              type="text"
+              class="form__input"
+              name="element-title"
+              placeholder="Название"
+              id="form__input-element-title"
+              minlength="2"
+              maxlength="30"
+              required
+            />
             <span class="form__input-error form__input-element-title-error"></span>
-            <input class="form__input" name="link" placeholder="Ссылка на картинку" id="form__input-link" type="url" required/>
+            <input class="form__input" name="link" placeholder="Ссылка на картинку" id="form__input-link" type="url" required />
             <span class="form__input-error form__input-link-error"></span>
           </fieldset>
           <input type="submit" class="form__submit" value="Создать" />
@@ -65,8 +94,32 @@
     <div class="popup" id="popupImage">
       <div class="popup__image-container">
         <button class="popup__close button" type="button"></button>
-        <img class="popup__image" src="#" alt="">
+        <img class="popup__image" src="#" alt="" />
         <h2 class="popup__title"></h2>
+      </div>
+    </div>
+
+    <div class="popup" id="popupConfirm">
+      <div class="popup__container">
+        <button class="popup__close button" type="button"></button>
+        <form class="form" novalidate>
+          <h2 class="form__title">Вы уверены?</h2>
+          <input type="submit" class="form__submit" value="Да" />
+        </form>
+      </div>
+    </div>
+
+    <div class="popup" id="popupEditAvatar">
+      <div class="popup__container">
+        <button class="popup__close button" type="button"></button>
+        <form class="form" novalidate>
+          <h2 class="form__title">Обновить аватар</h2>
+          <fieldset class="form__input-container">
+            <input class="form__input" name="link" placeholder="Ссылка на картинку" id="form__input-avatar-link" type="url" required />
+            <span class="form__input-error form__input-avatar-link-error"></span>
+          </fieldset>
+          <input type="submit" class="form__submit" value="Сохранить" />
+        </form>
       </div>
     </div>
 
@@ -76,7 +129,10 @@
         <img class="element__picture" />
         <div class="element__description">
           <h2 class="element__title"></h2>
-          <button class="element__heart" type="button"></button>
+          <div class="element__like">
+            <button class="element__heart" type="button"></button>
+            <p class="element__like-count">0</p>
+          </div>
         </div>
       </li>
     </template>
