@@ -1,15 +1,67 @@
-export function createCardElement(
-  templateElement,
+import { closePopup, openPopup } from './utils.js';
+import { deleteCard, deleteLike, putLike } from './api.js';
+import { popupConfirm } from './const';
+
+const popupImage = document.querySelector('#popupImage');
+const popupImagePicture = popupImage.querySelector('.popup__image');
+const popupImageTitle = popupImage.querySelector('.popup__title');
+
+const elementsList = document.querySelector('.elements__list');
+const templateElement = document.querySelector('#templateElement').content;
+const cardElementCss = {
+  elementSelector: '.element',
+  elementPictureSelector: '.element__picture',
+  elementTitleSelector: '.element__title',
+  elementHeartSelector: '.element__heart',
+  elementHeartActiveClass: 'element__heart_active',
+  elementTrashSelector: '.element__trash',
+  elementLikeCountSelector: '.element__like-count',
+  elementTrashAvailable: 'element__trash_avaliable',
+};
+let currentCardForDelete;
+
+const showCard = (name, link) => {
+  popupImagePicture.src = link;
+  popupImagePicture.alt = name;
+  popupImageTitle.textContent = name;
+  openPopup(popupImage);
+};
+
+const showConfirm = (cardId) => {
+  openPopup(popupConfirm);
+  currentCardForDelete = cardId;
+};
+
+export function prependCard(name, link, likeCount, isTrashAvailable, cardId, isLiked) {
+  const cardElement = createCardElement(
+    name,
+    link,
+    likeCount,
+    isTrashAvailable,
+    cardId,
+    isLiked
+  );
+  elementsList.prepend(cardElement);
+}
+
+export function appendCard(name, link, likeCount, isTrashAvailable, cardId, isLiked) {
+  const cardElement = createCardElement(
+    name,
+    link,
+    likeCount,
+    isTrashAvailable,
+    cardId,
+    isLiked
+  );
+  elementsList.append(cardElement);
+}
+
+function createCardElement(
   name,
   link,
   likeCount,
-  cardElementCss,
-  showCard,
   isTrashAvailable,
-  showConfirm,
   cardId,
-  deleteLike,
-  addLike,
   isLiked
 ) {
   const cardElement = templateElement.querySelector(cardElementCss.elementSelector).cloneNode(true);
@@ -35,7 +87,7 @@ export function createCardElement(
           console.log(err);
         });
     } else {
-      addLike(cardId)
+      putLike(cardId)
         .then((card) => {
           elementLikeCount.textContent = card.likes.length;
           evt.target.classList.add(cardElementCss.elementHeartActiveClass);
@@ -60,7 +112,14 @@ export function createCardElement(
   return cardElement;
 }
 
-export function removeCardElemenet(cardId) {
-  const cardElement = document.querySelector(`[data-id="${cardId}"]`);
-  cardElement.remove();
+export function removeCurrentCardElement() {
+  deleteCard(currentCardForDelete)
+    .then(() => {
+      const cardElement = document.querySelector(`[data-id="${currentCardForDelete}"]`);
+      cardElement.remove();
+      closePopup();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }

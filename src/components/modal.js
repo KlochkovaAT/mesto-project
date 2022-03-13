@@ -1,22 +1,16 @@
-let popupOpened;
-const popupOpenedClass = 'popup_opened';
+import { closePopup } from './utils';
 
-function closeByEscape(evt) {
-  if (evt.key === 'Escape') {
-    closePopup();
-  }
-}
+const popups = document.querySelectorAll('.popup');
 
-export function openPopup(popup) {
-  popupOpened = popup;
-  popup.classList.add(popupOpenedClass);
-  document.addEventListener('keydown', closeByEscape);
-}
-
-export function closePopup() {
-  if (popupOpened) {
-    popupOpened.classList.remove(popupOpenedClass);
-    popupOpened = null;
-  }
-  document.removeEventListener('keydown', closeByEscape);
+export function initPopupsListeners() {
+  popups.forEach(function (popup) {
+    popup.addEventListener('click', function (evt) {
+      if (evt.target.classList.contains('popup')) {
+        closePopup();
+      }
+      if (evt.target.classList.contains('popup__close')) {
+        closePopup();
+      }
+    });
+  });
 }
