@@ -13,22 +13,15 @@ const getResult = (res) => {
   return Promise.reject(`Ошибка: ${res.status}`);
 }
 
-export function GetUser(updateUser) {
+export function getUser() {
   return fetch(`${config.baseUrl}/users/me`, {
     method: 'GET',
     headers: config.headers,
   })
-    .then(getResult)
-    .then((result) => {
-      updateUser(result.name, result.about, result.avatar);
-      return result._id;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    .then(getResult);
 }
 
-export function PatchUser(name, about, updateUser) {
+export function patchUser(name, about) {
   return fetch(`${config.baseUrl}/users/me`, {
     method: 'PATCH',
     headers: config.headers,
@@ -37,16 +30,10 @@ export function PatchUser(name, about, updateUser) {
       about: about,
     }),
   })
-    .then(getResult)
-    .then((user) => {
-      updateUser(user.name, user.about, user.avatar);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    .then(getResult);
 }
 
-export function PatchAvatar(url, updateUser) {
+export function patchAvatar(url) {
   return fetch(`${config.baseUrl}/users/me/avatar`, {
     method: 'PATCH',
     headers: config.headers,
@@ -54,40 +41,18 @@ export function PatchAvatar(url, updateUser) {
       avatar: url,
     }),
   })
-    .then(getResult)
-    .then((user) => {
-      updateUser(user.avatar);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    .then(getResult);
 }
 
-export function GetCards(addCard, currentUserId) {
+export function getCards() {
   return fetch(`${config.baseUrl}/cards`, {
     method: 'GET',
     headers: config.headers,
   })
-    .then(getResult)
-    .then((result) => {
-      console.log(result);
-      result.forEach((element) => {
-        const showTrash = currentUserId === element.owner._id;
-        let isLiked = false;
-        element.likes.forEach((like) => {
-          if (like._id === currentUserId) {
-            isLiked = true;
-          }
-        });
-        addCard(element.name, element.link, element.likes.length, showTrash, element._id, isLiked);
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    .then(getResult);
 }
 
-export function PostCard(name, link, addCard) {
+export function postCard(name, link) {
   return fetch(`${config.baseUrl}/cards`, {
     method: 'POST',
     headers: config.headers,
@@ -96,49 +61,28 @@ export function PostCard(name, link, addCard) {
       link: link,
     }),
   })
-    .then(getResult)
-    .then((card) => {
-      addCard(card.name, card.link, card.likes.length, true, card._id);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    .then(getResult);
 }
 
-export function DeleteCard(cardId) {
+export function deleteCard(cardId) {
   return fetch(`${config.baseUrl}/cards/${cardId}`, {
     method: 'DELETE',
     headers: config.headers,
   })
-  .catch((err) => {
-    console.log(err);
-  });
 }
 
-export function PutLike(cardId) {
+export function putLike(cardId) {
   return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
     method: 'PUT',
     headers: config.headers,
   })
-    .then(getResult)
-    .then((card) => {
-      return card.likes.length;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    .then(getResult);
 }
 
-export function DeleteLike(cardId) {
+export function deleteLike(cardId) {
   return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
     method: 'DELETE',
     headers: config.headers,
   })
-    .then(getResult)
-    .then((card) => {
-      return card.likes.length;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    .then(getResult);
 }

@@ -25,23 +25,28 @@ export function createCardElement(
   elementLikeCount.textContent = likeCount;
   cardElement.querySelector(cardElementCss.elementTitleSelector).textContent = name;
   elementLike.addEventListener('click', function (evt) {
-    // evt.target.classList.toggle(cardElementCss.elementHeartActiveClass);
     if (evt.target.classList.contains(cardElementCss.elementHeartActiveClass)) {
-      evt.target.classList.remove(cardElementCss.elementHeartActiveClass);
-      deleteLike(cardId).then((newLikeCount) => {
-        elementLikeCount.textContent = newLikeCount;
-      });
+      deleteLike(cardId)
+        .then((card) => {
+          elementLikeCount.textContent = card.likes.length;
+          evt.target.classList.remove(cardElementCss.elementHeartActiveClass);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
-      evt.target.classList.add(cardElementCss.elementHeartActiveClass);
-      addLike(cardId).then((newLikeCount) => {
-        elementLikeCount.textContent = newLikeCount;
-      });
+      addLike(cardId)
+        .then((card) => {
+          elementLikeCount.textContent = card.likes.length;
+          evt.target.classList.add(cardElementCss.elementHeartActiveClass);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   });
   const elementTrash = cardElement.querySelector(cardElementCss.elementTrashSelector);
   elementTrash.addEventListener('click', function (evt) {
-    //const element = evt.target.closest(cardElementCss.elementSelector);
-    // element.remove();
     showConfirm(cardId);
   });
   if (isTrashAvailable) {
